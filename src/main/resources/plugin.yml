@@ -1,0 +1,17 @@
+name: Testing
+version: ${project.version}
+main: com.hicupalot.testing.Testing
+api-version: 1.17
+authors: [ hicupalot ]
+description: A testing plugin for testing
+
+commands:
+  Reload:
+    description: Reload the config
+    permission:  Test.reload
+    usage: /reload
+permissions:
+    Test.reload:
+      description: Reload permission
+      default: op
+
