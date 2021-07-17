@@ -1,5 +1,6 @@
 package Commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,21 +10,42 @@ import org.bukkit.entity.Player;
 public class calculator implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player || sender instanceof ConsoleCommandSender) {
-            if (args.length<3){
-                sender.sendMessage("You need to supply at least two numbers and an operation");
+            if (args.length < 3) {
+                sender.sendMessage("You need to supply two numbers and an operation");
                 return false;
             }
-            String number1= args[1];
+            if (!args[2].equals("+") || !args[2].equals("/") || !args[2].equals("*") || !args[2].equals("-")){
+                sender.sendMessage(ChatColor.RED+"Invalid Operator!");
+                return false;
+            }
+            if (args.length>3){
+                sender.sendMessage(ChatColor.RED+"You can only divide/multiply/add/minus 2 numbers from eachother at the moment!");
+                return false;
+            }
+            String number1 = args[1];
             String operator = args[2];
-            String number2=args[3];
-            String operator2 = args[3];
-            String number3=args[4];
-            String operator3 = args[5];
-            String number4=args[6];
-            String operator4 = args[7];
-            String number5=args[8];
-            String operator6 = args[9];
-            String number7=args[10];
-            String operator7 = args[11];
+            String number2 = args[3];
+            long a = Integer.parseInt(number1);
+            long b = Integer.parseInt(number2);
+            if (args[2].equals("+")){
+            long sum = a+b;
+            sender.sendMessage(ChatColor.GREEN+number1+" + "+number2+" = "+sum);
+            return false;
+            }
+            if (args[2].equals("*")){
+                long multiple=a*b;
+                sender.sendMessage(ChatColor.GREEN+number1+" * "+number2+" = "+multiple);
+                return false;
+            }
+            if (args[2].equals("/")){
+                long divide=a/b;
+                sender.sendMessage(ChatColor.GREEN+number1+" / "+number2+" = "+divide);
+                return false;
+            }
+            long minus=a-b;
+            sender.sendMessage(ChatColor.GREEN+number1+" - "+number2+" = "+minus);
+            return false;
         }
+    return false;
+    }
 }
