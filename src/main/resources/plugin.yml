@@ -10,6 +10,10 @@ commands:
     description: Reload the config
     permission:  Test.reload
     usage: /reload
+  calculator:
+    description: Add/Divide/Minus/Multiply two numbers together
+    usage: /calculator
+    aliases: calc
 permissions:
     Test.reload:
       description: Reload permission
